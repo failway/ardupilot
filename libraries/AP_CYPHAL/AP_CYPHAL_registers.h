@@ -69,7 +69,7 @@ public:
         }
     }
 
-    bool init(CyphalSubscriberManager &sub_manager, CanardInstance &ins, CanardTxQueue& tx_queue);
+    bool init(CyphalSubscriberManager &sub_manager, CanardInstanceCYP &ins, CanardTxQueue& tx_queue);
 
     // Return size of register name, otherwise 0
     uint8_t getRegisterNameByIndex(uint8_t register_index, uint8_t register_name[]);
@@ -94,7 +94,7 @@ private:
 class CyphalRegisterAccessRequest: public CyphalRequestSubscriber
 {
 public:
-    CyphalRegisterAccessRequest(CanardInstance &ins, CanardTxQueue& tx_queue, CyphalRegisters &uavcan_registers) :
+    CyphalRegisterAccessRequest(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, CyphalRegisters &uavcan_registers) :
         CyphalRequestSubscriber(ins, tx_queue, uavcan_register_Access_1_0_FIXED_PORT_ID_),
         _registers(uavcan_registers) {};
     virtual void subscribe() override;
@@ -115,7 +115,7 @@ private:
 class CyphalRegisterListRequest: public CyphalRequestSubscriber
 {
 public:
-    CyphalRegisterListRequest(CanardInstance &ins, CanardTxQueue& tx_queue, CyphalRegisters &uavcan_registers) :
+    CyphalRegisterListRequest(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, CyphalRegisters &uavcan_registers) :
         CyphalRequestSubscriber(ins, tx_queue, uavcan_register_List_1_0_FIXED_PORT_ID_),
         _registers(uavcan_registers) {};
     virtual void subscribe() override;

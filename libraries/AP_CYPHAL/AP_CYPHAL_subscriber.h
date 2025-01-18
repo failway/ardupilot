@@ -37,7 +37,7 @@ class CyphalSubscriberManager
 public:
     CyphalSubscriberManager() {};
     CyphalSubscriberManager(const CyphalSubscriberManager&) = delete;
-    void init(CanardInstance &ins, CanardTxQueue& tx_queue);
+    void init(CanardInstanceCYP &ins, CanardTxQueue& tx_queue);
     void process_all(const CanardRxTransferCYP *transfer);
     bool add_subscriber(CyphalBaseSubscriber *subsriber);
 private:
@@ -51,7 +51,7 @@ class CyphalBaseSubscriber
 {
 public:
     CyphalBaseSubscriber(uint8_t register_idx);
-    CyphalBaseSubscriber(CanardInstance &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
+    CyphalBaseSubscriber(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
         _canard(&ins), _tx_queue(&tx_queue), _port_id(port_id) {};
 
     CanardPortID get_port_id();
@@ -63,7 +63,7 @@ protected:
 
     CanardRxSubscription _subscription;
     CanardPortID _port_id;
-    CanardInstance *_canard;
+    CanardInstanceCYP *_canard;
     CanardTxQueue *_tx_queue;
 private:
     bool init(uint8_t register_idx);
@@ -73,7 +73,7 @@ private:
 class CyphalRequestSubscriber: public CyphalBaseSubscriber
 {
 public:
-    CyphalRequestSubscriber(CanardInstance &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
+    CyphalRequestSubscriber(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
         CyphalBaseSubscriber(ins, tx_queue, port_id)
     {
         _transfer_metadata.priority = CanardPriorityNominal;
@@ -92,7 +92,7 @@ protected:
 class CyphalHeartbeatSubscriber: public CyphalBaseSubscriber
 {
 public:
-    CyphalHeartbeatSubscriber(CanardInstance &ins, CanardTxQueue& tx_queue);
+    CyphalHeartbeatSubscriber(CanardInstanceCYP &ins, CanardTxQueue& tx_queue);
     virtual void subscribe() override;
     virtual void handler(const CanardRxTransferCYP* transfer) override;
 };
@@ -104,7 +104,7 @@ public:
 class CyphalGetInfoRequest: public CyphalRequestSubscriber
 {
 public:
-    CyphalGetInfoRequest(CanardInstance &ins, CanardTxQueue& tx_queue);
+    CyphalGetInfoRequest(CanardInstanceCYP &ins, CanardTxQueue& tx_queue);
     virtual void subscribe() override;
     virtual void handler(const CanardRxTransferCYP* transfer) override;
 private:
@@ -119,7 +119,7 @@ private:
 class CyphalNodeExecuteCommandRequest: public CyphalRequestSubscriber
 {
 public:
-    CyphalNodeExecuteCommandRequest(CanardInstance &ins, CanardTxQueue& tx_queue) :
+    CyphalNodeExecuteCommandRequest(CanardInstanceCYP &ins, CanardTxQueue& tx_queue) :
         CyphalRequestSubscriber(ins, tx_queue, uavcan_node_ExecuteCommand_1_0_FIXED_PORT_ID_) {};
     virtual void subscribe() override;
     virtual void handler(const CanardRxTransferCYP* transfer) override;

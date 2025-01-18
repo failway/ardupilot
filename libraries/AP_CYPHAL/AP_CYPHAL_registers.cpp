@@ -61,7 +61,7 @@ static RegisterCell registers_table[CyphalRegisters::NUMBER_OF_REGISTERS] = {
 };
 
 
-bool CyphalRegisters::init(CyphalSubscriberManager &sub_manager, CanardInstance &ins, CanardTxQueue &tx_queue)
+bool CyphalRegisters::init(CyphalSubscriberManager &sub_manager, CanardInstanceCYP &ins, CanardTxQueue &tx_queue)
 {
     CyphalBaseSubscriber *subsriber;
 

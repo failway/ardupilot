@@ -26,7 +26,7 @@
 #include <GCS_MAVLink/GCS_MAVLink.h>
 
 
-void CyphalSubscriberManager::init(CanardInstance &ins, CanardTxQueue& tx_queue)
+void CyphalSubscriberManager::init(CanardInstanceCYP &ins, CanardTxQueue& tx_queue)
 {
     CyphalBaseSubscriber *subsriber;
 
@@ -133,7 +133,7 @@ void CyphalRequestSubscriber::push_response(size_t buf_size, uint8_t* buf)
 /**
  * @note uavcan.node.Heartbeat.1.0
  */
-CyphalHeartbeatSubscriber::CyphalHeartbeatSubscriber(CanardInstance &ins, CanardTxQueue& tx_queue) :
+CyphalHeartbeatSubscriber::CyphalHeartbeatSubscriber(CanardInstanceCYP &ins, CanardTxQueue& tx_queue) :
     CyphalBaseSubscriber(ins, tx_queue, uavcan_node_Heartbeat_1_0_FIXED_PORT_ID_)
 {
 }
@@ -151,7 +151,7 @@ void CyphalHeartbeatSubscriber::handler(const CanardRxTransferCYP* transfer)
 /**
  * @note uavcan.node.GetInfo.1.0
  */
-CyphalGetInfoRequest::CyphalGetInfoRequest(CanardInstance &ins, CanardTxQueue& tx_queue) :
+CyphalGetInfoRequest::CyphalGetInfoRequest(CanardInstanceCYP &ins, CanardTxQueue& tx_queue) :
     CyphalRequestSubscriber(ins, tx_queue, uavcan_node_GetInfo_1_0_FIXED_PORT_ID_)
 {
     _node_status.protocol_version.major = CANARD_CYPHAL_SPECIFICATION_VERSION_MAJOR;

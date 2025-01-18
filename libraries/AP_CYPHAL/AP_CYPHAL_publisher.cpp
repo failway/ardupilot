@@ -22,7 +22,7 @@
 #include <AP_CYPHAL/AP_CYPHAL_registers.h>
 
 
-void CyphalPublisherManager::init(CanardInstance &ins, CanardTxQueue& tx_queue)
+void CyphalPublisherManager::init(CanardInstanceCYP &ins, CanardTxQueue& tx_queue)
 {
     CyphalBasePublisher *publisher;
 
@@ -70,7 +70,7 @@ void CyphalBasePublisher::push(size_t buf_size, uint8_t* buf)
 /**
  * @note uavcan.node.Heartbeat_1_0
  */
-CyphalHeartbeatPublisher::CyphalHeartbeatPublisher(CanardInstance &ins, CanardTxQueue& tx_queue) :
+CyphalHeartbeatPublisher::CyphalHeartbeatPublisher(CanardInstanceCYP &ins, CanardTxQueue& tx_queue) :
     CyphalBasePublisher(ins, tx_queue, uavcan_node_Heartbeat_1_0_FIXED_PORT_ID_)
 {
     msg.health.value = uavcan_node_Health_1_0_NOMINAL;
@@ -112,7 +112,7 @@ void CyphalHeartbeatPublisher::publish()
 /**
  * @note uavcan.node.port.List_0_1
  */
-CyphalPortListPublisher::CyphalPortListPublisher(CanardInstance &ins, CanardTxQueue& tx_queue) :
+CyphalPortListPublisher::CyphalPortListPublisher(CanardInstanceCYP &ins, CanardTxQueue& tx_queue) :
     CyphalBasePublisher(ins, tx_queue, uavcan_node_port_List_0_1_FIXED_PORT_ID_)
 {
     _transfer_metadata.priority = CanardPriorityNominal;

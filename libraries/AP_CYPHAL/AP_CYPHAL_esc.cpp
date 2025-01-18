@@ -28,7 +28,7 @@ extern const AP_HAL::HAL& hal;
 
 bool CyphalEscController::init(CyphalSubscriberManager &sub_manager,
                                CyphalPublisherManager &pub_manager,
-                               CanardInstance &ins,
+                               CanardInstanceCYP &ins,
                                CanardTxQueue& tx_queue)
 {
     _pub_setpoint = new CyphalSetpointPublisher(ins, tx_queue, _registers.getPortIdByIndex(UAVCAN_PUB_SETPOINT_ID));
@@ -185,7 +185,7 @@ void CyphalStatusSubscriber::handler(const CanardRxTransfer* transfer)
 /**
  * @note reg.udral.service.actuator.common.sp.*
  */
-CyphalSetpointPublisher::CyphalSetpointPublisher(CanardInstance &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
+CyphalSetpointPublisher::CyphalSetpointPublisher(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
     CyphalBasePublisher(ins, tx_queue, port_id)
 {
     _transfer_metadata.priority = CanardPriorityNominal;
@@ -229,7 +229,7 @@ void CyphalSetpointPublisher::publish()
 /**
  * @note reg.udral.service.common_Readiness_0_1
  */
-CyphalReadinessPublisher::CyphalReadinessPublisher(CanardInstance &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
+CyphalReadinessPublisher::CyphalReadinessPublisher(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
     CyphalBasePublisher(ins, tx_queue, port_id)
 {
     _transfer_metadata.priority = CanardPriorityNominal;

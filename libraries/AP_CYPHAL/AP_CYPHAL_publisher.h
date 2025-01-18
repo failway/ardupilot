@@ -34,7 +34,7 @@ class CyphalPublisherManager
 {
 public:
     CyphalPublisherManager() {};
-    void init(CanardInstance &ins, CanardTxQueue& tx_queue);
+    void init(CanardInstanceCYP &ins, CanardTxQueue& tx_queue);
 
     // return true in sucess, otherwise false
     bool add_publisher(CyphalBasePublisher *publisher);
@@ -50,7 +50,7 @@ private:
 class CyphalBasePublisher
 {
 public:
-    CyphalBasePublisher(CanardInstance &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
+    CyphalBasePublisher(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
         _canard(ins), _tx_queue(tx_queue), _port_id(port_id) {};
     uint16_t get_port_id()
     {
@@ -61,7 +61,7 @@ public:
 protected:
     void push(size_t buf_size, uint8_t* buf);
 
-    CanardInstance &_canard;
+    CanardInstanceCYP &_canard;
     CanardTxQueue &_tx_queue;
     CanardPortID _port_id;
     CanardTransferMetadata _transfer_metadata;
@@ -74,7 +74,7 @@ protected:
 class CyphalHeartbeatPublisher : public CyphalBasePublisher
 {
 public:
-    CyphalHeartbeatPublisher(CanardInstance &ins, CanardTxQueue& tx_queue);
+    CyphalHeartbeatPublisher(CanardInstanceCYP &ins, CanardTxQueue& tx_queue);
     virtual void update() override;
 
 private:
@@ -92,7 +92,7 @@ private:
 class CyphalPortListPublisher : public CyphalBasePublisher
 {
 public:
-    CyphalPortListPublisher(CanardInstance &ins, CanardTxQueue& tx_queue);
+    CyphalPortListPublisher(CanardInstanceCYP &ins, CanardTxQueue& tx_queue);
     virtual void update() override;
 
 private:

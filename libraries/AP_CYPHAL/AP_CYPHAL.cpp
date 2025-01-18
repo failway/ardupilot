@@ -213,16 +213,16 @@ uint8_t base[CYPHAL_HEAP_SIZE] __attribute__ ((aligned (O1HEAP_ALIGNMENT)));
 static O1HeapInstance* my_allocator;
 
 
-static void* memAllocate(CanardInstance* const canard_, const size_t amount);
-static void memFree(CanardInstance* const canard_, void* const pointer);
+static void* memAllocate(CanardInstanceCYP* const canard_, const size_t amount);
+static void memFree(CanardInstanceCYP* const canard_, void* const pointer);
 
 
-void* memAllocate(CanardInstance* const canard_, const size_t amount)
+void* memAllocate(CanardInstanceCYP* const canard_, const size_t amount)
 {
     (void) canard_;
     return o1heapAllocate(my_allocator, amount);
 }
-void memFree(CanardInstance* const canard_, void* const pointer)
+void memFree(CanardInstanceCYP* const canard_, void* const pointer)
 {
     (void) canard_;
     o1heapFree(my_allocator, pointer);
@@ -244,7 +244,7 @@ CyphalRegisters &AP_CYPHAL::get_registers()
     return _registers;
 }
 
-CanardInstance &AP_CYPHAL::get_canard_instance()
+CanardInstanceCYP &AP_CYPHAL::get_canard_instance()
 {
     return _canard;
 }

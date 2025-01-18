@@ -72,7 +72,7 @@ public:
 
     bool init(CyphalSubscriberManager &sub_manager,
               CyphalPublisherManager &pub_manager,
-              CanardInstance &ins,
+              CanardInstanceCYP &ins,
               CanardTxQueue& tx_queue);
     void SRV_push_servos(void);
 
@@ -101,7 +101,7 @@ private:
 class CyphalDynamicsSubscriber: public CyphalBaseSubscriber, AP_ESC_Telem_Backend
 {
 public:
-    CyphalDynamicsSubscriber(CanardInstance &ins, CanardTxQueue& tx_queue, int16_t port_id, uint8_t esc_idx) :
+    CyphalDynamicsSubscriber(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, int16_t port_id, uint8_t esc_idx) :
         CyphalBaseSubscriber(ins, tx_queue, port_id), _esc_idx(esc_idx) { };
 
     virtual void subscribe() override;
@@ -118,7 +118,7 @@ private:
 class CyphalPowerSubscriber: public CyphalBaseSubscriber, AP_ESC_Telem_Backend
 {
 public:
-    CyphalPowerSubscriber(CanardInstance &ins, CanardTxQueue& tx_queue, int16_t port_id, uint8_t esc_idx) :
+    CyphalPowerSubscriber(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, int16_t port_id, uint8_t esc_idx) :
         CyphalBaseSubscriber(ins, tx_queue, port_id), _esc_idx(esc_idx) { };
 
     virtual void subscribe() override;
@@ -135,7 +135,7 @@ private:
 class CyphalStatusSubscriber: public CyphalBaseSubscriber, AP_ESC_Telem_Backend
 {
 public:
-    CyphalStatusSubscriber(CanardInstance &ins, CanardTxQueue& tx_queue, int16_t port_id, uint8_t esc_idx) :
+    CyphalStatusSubscriber(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, int16_t port_id, uint8_t esc_idx) :
         CyphalBaseSubscriber(ins, tx_queue, port_id), _esc_idx(esc_idx) { };
 
     virtual void subscribe() override;
@@ -152,7 +152,7 @@ private:
 class CyphalSetpointPublisher : public CyphalBasePublisher
 {
 public:
-    CyphalSetpointPublisher(CanardInstance &ins, CanardTxQueue& tx_queue, CanardPortID port_id);
+    CyphalSetpointPublisher(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, CanardPortID port_id);
     virtual void update() override;
     void set_setpoint(SrvConfig *src_config);
 
@@ -172,7 +172,7 @@ private:
 class CyphalReadinessPublisher : public CyphalBasePublisher
 {
 public:
-    CyphalReadinessPublisher(CanardInstance &ins, CanardTxQueue& tx_queue, CanardPortID port_id);
+    CyphalReadinessPublisher(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, CanardPortID port_id);
     virtual void update() override;
     void update_readiness();
 

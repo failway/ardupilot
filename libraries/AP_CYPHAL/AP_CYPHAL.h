@@ -56,7 +56,7 @@ public:
     static AP_CYPHAL *get_cyphal(uint8_t driver_index);
 
     CyphalRegisters &get_registers();
-    CanardInstance &get_canard_instance();
+    CanardInstanceCYP &get_canard_instance();
     CanardTxQueue &get_tx_queue();
 
     void init(uint8_t driver_index, bool enable_filters) override;
@@ -77,7 +77,7 @@ private:
     CyphalTransportIface _transport_iface;
     AP_HAL::CANIface* _can_iface;
 
-    CanardInstance _canard;
+    CanardInstanceCYP _canard;
     CanardTxQueue _tx_queue;
 
     /**
