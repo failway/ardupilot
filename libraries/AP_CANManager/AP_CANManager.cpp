@@ -70,6 +70,11 @@ const AP_Param::GroupInfo AP_CANManager::var_info[] = {
     // @Path: ../AP_CANManager/AP_CANIfaceParams.cpp
     AP_SUBGROUPINFO(_interfaces[2], "P3_", 3, AP_CANManager, AP_CANManager::CANIface_Params),
 #endif
+#if HAL_ENABLE_CYPHAL_DRIVERS
+    // @Group: UC1_
+    // @Path: ../AP_CYPHAL/AP_CYPHAL.cpp
+    AP_SUBGROUPINFO(_drv_param[6], "UC1_", 7, AP_CANManager, AP_CANManager::CANDriver_Params),
+#endif
 
 #if HAL_MAX_CAN_PROTOCOL_DRIVERS > 0
     // @Group: D1_
