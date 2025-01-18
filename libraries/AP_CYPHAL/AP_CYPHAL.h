@@ -88,7 +88,7 @@ private:
     int8_t spinReceive(uint16_t us);
 
     void spinTransmit();
-    void processReceivedTransfer(const uint8_t iface_index, const CanardRxTransfer* transfer);
+    void processReceivedTransfer(const uint8_t iface_index, const CanardRxTransferCYP* transfer);
 
     ///< Application layer
     AP_Int16 _parameters_table[CyphalRegisters::NUMBER_OF_REGISTERS];

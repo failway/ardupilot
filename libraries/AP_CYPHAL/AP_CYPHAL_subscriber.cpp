@@ -59,7 +59,7 @@ bool CyphalSubscriberManager::add_subscriber(CyphalBaseSubscriber *subsriber)
 }
 
 
-void CyphalSubscriberManager::process_all(const CanardRxTransfer* transfer)
+void CyphalSubscriberManager::process_all(const CanardRxTransferCYP* transfer)
 {
     auto port_id = transfer->metadata.port_id;
     for (uint_fast8_t sub_idx = 0; sub_idx < number_of_subscribers; sub_idx++) {
@@ -143,7 +143,7 @@ void CyphalHeartbeatSubscriber::subscribe()
     subscribeOnMessage(uavcan_node_Heartbeat_1_0_EXTENT_BYTES_);
 }
 
-void CyphalHeartbeatSubscriber::handler(const CanardRxTransfer* transfer)
+void CyphalHeartbeatSubscriber::handler(const CanardRxTransferCYP* transfer)
 {
 }
 
@@ -171,12 +171,12 @@ void CyphalGetInfoRequest::subscribe()
     subscribeOnRequest(uavcan_node_GetInfo_Request_1_0_EXTENT_BYTES_);
 }
 
-void CyphalGetInfoRequest::handler(const CanardRxTransfer* transfer)
+void CyphalGetInfoRequest::handler(const CanardRxTransferCYP* transfer)
 {
     makeResponse(transfer);
 }
 
-void CyphalGetInfoRequest::makeResponse(const CanardRxTransfer* transfer)
+void CyphalGetInfoRequest::makeResponse(const CanardRxTransferCYP* transfer)
 {
     _transfer_metadata.transfer_id = transfer->metadata.transfer_id;
     _transfer_metadata.remote_node_id = transfer->metadata.remote_node_id;
@@ -198,12 +198,12 @@ void CyphalNodeExecuteCommandRequest::subscribe()
     subscribeOnRequest(uavcan_node_ExecuteCommand_Request_1_0_EXTENT_BYTES_);
 }
 
-void CyphalNodeExecuteCommandRequest::handler(const CanardRxTransfer* transfer)
+void CyphalNodeExecuteCommandRequest::handler(const CanardRxTransferCYP* transfer)
 {
     makeResponse(transfer);
 }
 
-void CyphalNodeExecuteCommandRequest::makeResponse(const CanardRxTransfer* transfer)
+void CyphalNodeExecuteCommandRequest::makeResponse(const CanardRxTransferCYP* transfer)
 {
     GCS_SEND_TEXT(MAV_SEVERITY_WARNING, "AP_CYPHAL: ExecuteCommand not implemented yet");
 }

@@ -98,14 +98,14 @@ public:
         CyphalRequestSubscriber(ins, tx_queue, uavcan_register_Access_1_0_FIXED_PORT_ID_),
         _registers(uavcan_registers) {};
     virtual void subscribe() override;
-    virtual void handler(const CanardRxTransfer* transfer) override;
+    virtual void handler(const CanardRxTransferCYP* transfer) override;
 private:
     uavcan_register_Access_Request_1_0 _request_msg;
     uavcan_register_Access_Response_1_0 response_msg;
     CyphalRegisters &_registers;
 
-    int8_t parseRequest(const CanardRxTransfer* transfer);
-    void makeResponse(const CanardRxTransfer* transfer, int8_t reg_index);
+    int8_t parseRequest(const CanardRxTransferCYP* transfer);
+    void makeResponse(const CanardRxTransferCYP* transfer, int8_t reg_index);
 };
 
 
@@ -119,13 +119,13 @@ public:
         CyphalRequestSubscriber(ins, tx_queue, uavcan_register_List_1_0_FIXED_PORT_ID_),
         _registers(uavcan_registers) {};
     virtual void subscribe() override;
-    virtual void handler(const CanardRxTransfer* transfer) override;
+    virtual void handler(const CanardRxTransferCYP* transfer) override;
 private:
     uavcan_register_List_Response_1_0 _response_msg = {};
     CyphalRegisters &_registers;
 
-    uint16_t parseRequest(const CanardRxTransfer* transfer);
-    void makeResponse(const CanardRxTransfer* transfer, uint16_t index);
+    uint16_t parseRequest(const CanardRxTransferCYP* transfer);
+    void makeResponse(const CanardRxTransferCYP* transfer, uint16_t index);
 };
 
 #endif // HAL_ENABLE_CYPHAL_DRIVERS

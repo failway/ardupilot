@@ -132,13 +132,13 @@ void CyphalRegisterAccessRequest::subscribe()
     subscribeOnRequest(uavcan_register_Access_Request_1_0_EXTENT_BYTES_);
 }
 
-void CyphalRegisterAccessRequest::handler(const CanardRxTransfer* transfer)
+void CyphalRegisterAccessRequest::handler(const CanardRxTransferCYP* transfer)
 {
     auto reg_index = parseRequest(transfer);
     makeResponse(transfer, reg_index);
 }
 
-int8_t CyphalRegisterAccessRequest::parseRequest(const CanardRxTransfer* transfer)
+int8_t CyphalRegisterAccessRequest::parseRequest(const CanardRxTransferCYP* transfer)
 {
     auto payload_len = transfer->payload_size;
     const uint8_t* payload = static_cast<const uint8_t*>(transfer->payload);
@@ -147,7 +147,7 @@ int8_t CyphalRegisterAccessRequest::parseRequest(const CanardRxTransfer* transfe
     return _registers.getRegisterIndexByRegisterName(_request_msg.name.name.elements, _request_msg.name.name.count);
 }
 
-void CyphalRegisterAccessRequest::makeResponse(const CanardRxTransfer* transfer, int8_t reg_index)
+void CyphalRegisterAccessRequest::makeResponse(const CanardRxTransferCYP* transfer, int8_t reg_index)
 {
     constexpr uint8_t NATURAL16_TAG = 10;
 
@@ -186,13 +186,13 @@ void CyphalRegisterListRequest::subscribe()
     subscribeOnRequest(uavcan_register_List_Request_1_0_EXTENT_BYTES_);
 }
 
-void CyphalRegisterListRequest::handler(const CanardRxTransfer* transfer)
+void CyphalRegisterListRequest::handler(const CanardRxTransferCYP* transfer)
 {
     auto index = parseRequest(transfer);
     makeResponse(transfer, index);
 }
 
-uint16_t CyphalRegisterListRequest::parseRequest(const CanardRxTransfer* transfer)
+uint16_t CyphalRegisterListRequest::parseRequest(const CanardRxTransferCYP* transfer)
 {
     auto payload_len = transfer->payload_size;
     const uint8_t* payload = static_cast<const uint8_t*>(transfer->payload);
@@ -201,7 +201,7 @@ uint16_t CyphalRegisterListRequest::parseRequest(const CanardRxTransfer* transfe
     return request_msg.index;
 }
 
-void CyphalRegisterListRequest::makeResponse(const CanardRxTransfer* transfer, uint16_t index)
+void CyphalRegisterListRequest::makeResponse(const CanardRxTransferCYP* transfer, uint16_t index)
 {
     _transfer_metadata.remote_node_id = transfer->metadata.remote_node_id;
     _transfer_metadata.transfer_id = transfer->metadata.transfer_id;

@@ -38,7 +38,7 @@ public:
     CyphalSubscriberManager() {};
     CyphalSubscriberManager(const CyphalSubscriberManager&) = delete;
     void init(CanardInstance &ins, CanardTxQueue& tx_queue);
-    void process_all(const CanardRxTransfer *transfer);
+    void process_all(const CanardRxTransferCYP *transfer);
     bool add_subscriber(CyphalBaseSubscriber *subsriber);
 private:
     static constexpr uint8_t max_number_of_subscribers = 17;    /// default (5) + esc (4*3)
@@ -56,7 +56,7 @@ public:
 
     CanardPortID get_port_id();
     virtual void subscribe() = 0;
-    virtual void handler(const CanardRxTransfer* transfer) = 0;
+    virtual void handler(const CanardRxTransferCYP* transfer) = 0;
 protected:
     void subscribeOnMessage(const size_t extent);
     void subscribeOnRequest(const size_t extent);
@@ -94,7 +94,7 @@ class CyphalHeartbeatSubscriber: public CyphalBaseSubscriber
 public:
     CyphalHeartbeatSubscriber(CanardInstance &ins, CanardTxQueue& tx_queue);
     virtual void subscribe() override;
-    virtual void handler(const CanardRxTransfer* transfer) override;
+    virtual void handler(const CanardRxTransferCYP* transfer) override;
 };
 
 
@@ -106,9 +106,9 @@ class CyphalGetInfoRequest: public CyphalRequestSubscriber
 public:
     CyphalGetInfoRequest(CanardInstance &ins, CanardTxQueue& tx_queue);
     virtual void subscribe() override;
-    virtual void handler(const CanardRxTransfer* transfer) override;
+    virtual void handler(const CanardRxTransferCYP* transfer) override;
 private:
-    void makeResponse(const CanardRxTransfer* transfer);
+    void makeResponse(const CanardRxTransferCYP* transfer);
     uavcan_node_GetInfo_Response_1_0 _node_status;
 };
 
@@ -122,9 +122,9 @@ public:
     CyphalNodeExecuteCommandRequest(CanardInstance &ins, CanardTxQueue& tx_queue) :
         CyphalRequestSubscriber(ins, tx_queue, uavcan_node_ExecuteCommand_1_0_FIXED_PORT_ID_) {};
     virtual void subscribe() override;
-    virtual void handler(const CanardRxTransfer* transfer) override;
+    virtual void handler(const CanardRxTransferCYP* transfer) override;
 private:
-    void makeResponse(const CanardRxTransfer* transfer);
+    void makeResponse(const CanardRxTransferCYP* transfer);
 };
 
 #endif // HAL_ENABLE_CYPHAL_DRIVERS

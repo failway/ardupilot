@@ -357,7 +357,7 @@ int8_t AP_CYPHAL::spinReceive(uint16_t duration_us)
             continue;
         }
 
-        CanardRxTransfer transfer;
+        CanardRxTransferCYP transfer;
         int8_t result = canardRxAccept(&_canard, AP_HAL::micros64(), &canard_frame, 0, &transfer, NULL);
         if (result < 0) {
             GCS_SEND_TEXT(MAV_SEVERITY_WARNING, "AP_CYPHAL: recv err: %d", result);
@@ -392,7 +392,7 @@ void AP_CYPHAL::spinTransmit()
 }
 
 
-void AP_CYPHAL::processReceivedTransfer(const uint8_t iface_index, const CanardRxTransfer* transfer)
+void AP_CYPHAL::processReceivedTransfer(const uint8_t iface_index, const CanardRxTransferCYP* transfer)
 {
     subscriber_manager.process_all(transfer);
 }
