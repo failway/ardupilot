@@ -757,12 +757,12 @@ def _build_dynamic_sources(bld):
             )
         bld(
             features='cyphalgen',
-            source=bld.srcnode.ant_glob('modules/cyphal/DSDL/[a-z]* libraries/AP_CYPHAL/dsdl/[a-z]*', dir=True, src=False),
-            output_dir='modules/cyphal/libcanard/dsdlc_generated/',
+            source=bld.srcnode.ant_glob('modules/cyphal/public_regulated_data_types/reg', dir=True, src=False),
+            output_dir='modules/cyphal/nunavut_out',
             name='cyphal',
             export_includes=[
-                bld.bldnode.make_node('modules/cyphal/libcanard/dsdlc_generated/include').abspath(),
-                bld.srcnode.find_dir('modules/cyphal/libcanard/').abspath(),
+                bld.bldnode.make_node('modules/cyphal/nunavut_out').abspath(),
+                bld.srcnode.find_dir('modules/cyphal/libcanard/libcanard').abspath(),
                 bld.srcnode.find_dir('modules/cyphal/o1heap/o1heap').abspath(),
             ]
         )
