@@ -217,14 +217,14 @@ void AP_CANManager::init()
 #endif
 #if HAL_ENABLE_CYPHAL_DRIVERS
         case AP_CAN::Protocol::Cyphal:
-            _drivers[drv_num] = _drv_param[drv_num]._cyphal = NEW_NOTHROW AP_Cyphal(drv_num);
+            _drivers[drv_num] = _drv_param[drv_num]._cyphal = NEW_NOTHROW AP_CYPHAL(drv_num);
 
             if (_drivers[drv_num] == nullptr) {
                 AP_BoardConfig::allocation_error("Cyphal %d", i + 1);
                 continue;
             }
 
-            AP_Param::load_object_from_eeprom((AP_Cyphal*)_drivers[drv_num], AP_Cyphal::var_info);
+            AP_Param::load_object_from_eeprom((AP_CYPHAL*)_drivers[drv_num], AP_CYPHAL::var_info);
             break;
 #endif
 
