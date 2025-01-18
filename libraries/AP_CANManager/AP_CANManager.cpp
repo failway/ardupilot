@@ -92,7 +92,7 @@ const AP_Param::GroupInfo AP_CANManager::var_info[] = {
 #if HAL_ENABLE_CYPHAL_DRIVERS
     // @Group: UC1_
     // @Path: ../AP_CYPHAL/AP_CYPHAL.cpp
-    AP_SUBGROUPINFO(_cyphal, "UC1_", 7, AP_CANManager, AP_CANManager::CANDriver_Params),
+    AP_SUBGROUPINFO(_drv_param[3], "UC1_", 7, AP_CANManager, AP_CANManager::CANDriver_Params),
 #endif
 #if AP_CAN_SLCAN_ENABLED
     // @Group: SLCAN_
