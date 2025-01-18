@@ -70,11 +70,7 @@ const AP_Param::GroupInfo AP_CANManager::var_info[] = {
     // @Path: ../AP_CANManager/AP_CANIfaceParams.cpp
     AP_SUBGROUPINFO(_interfaces[2], "P3_", 3, AP_CANManager, AP_CANManager::CANIface_Params),
 #endif
-#if HAL_ENABLE_CYPHAL_DRIVERS
-    // @Group: UC1_
-    // @Path: ../AP_CYPHAL/AP_CYPHAL.cpp
-    AP_SUBGROUPINFO(_drv_param[6], "UC1_", 7, AP_CANManager, AP_CANManager::CANDriver_Params),
-#endif
+
 
 #if HAL_MAX_CAN_PROTOCOL_DRIVERS > 0
     // @Group: D1_
@@ -93,11 +89,15 @@ const AP_Param::GroupInfo AP_CANManager::var_info[] = {
     // @Path: ../AP_CANManager/AP_CANManager_CANDriver_Params.cpp
     AP_SUBGROUPINFO(_drv_param[2], "D3_", 6, AP_CANManager, AP_CANManager::CANDriver_Params),
 #endif
-
+#if HAL_ENABLE_CYPHAL_DRIVERS
+    // @Group: UC1_
+    // @Path: ../AP_CYPHAL/AP_CYPHAL.cpp
+    AP_SUBGROUPINFO(_cyphal, "UC1_", 7, AP_CANManager, AP_CANManager::CANDriver_Params),
+#endif
 #if AP_CAN_SLCAN_ENABLED
     // @Group: SLCAN_
     // @Path: ../AP_CANManager/AP_SLCANIface.cpp
-    AP_SUBGROUPINFO(_slcan_interface, "SLCAN_", 7, AP_CANManager, SLCAN::CANIface),
+    AP_SUBGROUPINFO(_slcan_interface, "SLCAN_", 8, AP_CANManager, SLCAN::CANIface),
 #endif
 
     // @Param: LOGLEVEL
@@ -106,7 +106,7 @@ const AP_Param::GroupInfo AP_CANManager::var_info[] = {
     // @Range: 0 4
     // @Values: 0: Log None, 1: Log Error, 2: Log Warning and below, 3: Log Info and below, 4: Log Everything
     // @User: Advanced
-    AP_GROUPINFO("LOGLEVEL", 8, AP_CANManager, _loglevel, AP_CANManager::LOG_NONE),
+    AP_GROUPINFO("LOGLEVEL", 9, AP_CANManager, _loglevel, AP_CANManager::LOG_NONE),
 
     AP_GROUPEND
 };

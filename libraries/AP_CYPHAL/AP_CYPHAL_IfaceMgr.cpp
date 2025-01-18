@@ -38,7 +38,7 @@ bool CyphalTransportIface::receive(CanardFrame* canard_frame)
 
     bool read_select = true;
     bool write_select = false;
-    uint64_t timeout = AP_HAL::native_micros64() + 10000;
+    uint64_t timeout = AP_HAL::micros64() + 10000;
     int ret = _can_iface->select(read_select, write_select, nullptr, timeout);
     if (!ret || !read_select) {
         return false; // no data is available to read
