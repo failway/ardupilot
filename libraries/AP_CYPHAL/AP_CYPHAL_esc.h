@@ -105,7 +105,7 @@ public:
         CyphalBaseSubscriber(ins, tx_queue, port_id), _esc_idx(esc_idx) { };
 
     virtual void subscribe() override;
-    virtual void handler(const CanardRxTransfer* transfer) override;
+    virtual void handler(const CanardRxTransferCYP* transfer) override;
 
 private:
     uint8_t _esc_idx;
@@ -122,7 +122,7 @@ public:
         CyphalBaseSubscriber(ins, tx_queue, port_id), _esc_idx(esc_idx) { };
 
     virtual void subscribe() override;
-    virtual void handler(const CanardRxTransfer* transfer) override;
+    virtual void handler(const CanardRxTransferCYP* transfer) override;
 
 private:
     uint8_t _esc_idx;
@@ -139,7 +139,7 @@ public:
         CyphalBaseSubscriber(ins, tx_queue, port_id), _esc_idx(esc_idx) { };
 
     virtual void subscribe() override;
-    virtual void handler(const CanardRxTransfer* transfer) override;
+    virtual void handler(const CanardRxTransferCYP* transfer) override;
 
 private:
     uint8_t _esc_idx;

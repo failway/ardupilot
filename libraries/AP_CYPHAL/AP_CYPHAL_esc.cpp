@@ -118,7 +118,7 @@ void CyphalDynamicsSubscriber::subscribe()
     subscribeOnMessage(reg_udral_physics_dynamics_rotation_PlanarTs_0_1_EXTENT_BYTES_);
 }
 
-void CyphalDynamicsSubscriber::handler(const CanardRxTransfer* transfer)
+void CyphalDynamicsSubscriber::handler(const CanardRxTransferCYP* transfer)
 {
     const uint8_t* payload = static_cast<const uint8_t*>(transfer->payload);
     size_t payload_len = transfer->payload_size;
@@ -141,7 +141,7 @@ void CyphalPowerSubscriber::subscribe()
     subscribeOnMessage(reg_udral_physics_electricity_PowerTs_0_1_EXTENT_BYTES_);
 }
 
-void CyphalPowerSubscriber::handler(const CanardRxTransfer* transfer)
+void CyphalPowerSubscriber::handler(const CanardRxTransferCYP* transfer)
 {
     const uint8_t* payload = static_cast<const uint8_t*>(transfer->payload);
     size_t payload_len = transfer->payload_size;
@@ -166,7 +166,7 @@ void CyphalStatusSubscriber::subscribe()
     subscribeOnMessage(reg_udral_service_actuator_common_Status_0_1_EXTENT_BYTES_);
 }
 
-void CyphalStatusSubscriber::handler(const CanardRxTransfer* transfer)
+void CyphalStatusSubscriber::handler(const CanardRxTransferCYP* transfer)
 {
     const uint8_t* payload = static_cast<const uint8_t*>(transfer->payload);
     size_t payload_len = transfer->payload_size;
