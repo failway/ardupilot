@@ -23,15 +23,15 @@
 
 #include "canard.h"
 
-using namespace cyphal;
+
 
 class CyphalTransportIface
 {
 public:
     CyphalTransportIface() {};
     void attach_can_iface(AP_HAL::CANIface* new_can_iface);
-    bool receive(CanardFrame* can_frame);
-    bool send(const CanardTxQueueItem* transfer);
+    bool receive(cyphal::CanardFrame* can_frame);
+    bool send(const cyphal::CanardTxQueueItem* transfer);
 
 private:
     AP_HAL::CANIface* _can_iface = nullptr;
