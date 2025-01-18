@@ -31,7 +31,7 @@ public:
     CyphalTransportIface() {};
     void attach_can_iface(AP_HAL::CANIface* new_can_iface);
     bool receive(CanardFrame* can_frame);
-    bool send(const CanardTxQueueItem* transfer);
+    bool send(const CanardTxQueueItemCYP* transfer);
 
 private:
     AP_HAL::CANIface* _can_iface = nullptr;

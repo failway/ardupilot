@@ -381,7 +381,7 @@ int8_t AP_CYPHAL::spinReceive(uint16_t duration_us)
 
 void AP_CYPHAL::spinTransmit()
 {
-    for (const CanardTxQueueItem* ti = NULL; (ti = canardTxPeek(&_tx_queue)) != NULL;) {
+    for (const CanardTxQueueItemCYP* ti = NULL; (ti = canardTxPeek(&_tx_queue)) != NULL;) {
         if ((0U == ti->tx_deadline_usec) || (ti->tx_deadline_usec > AP_HAL::micros())) {
             if (!_transport_iface.send(ti)) {
                 break;

@@ -61,7 +61,7 @@ bool CyphalTransportIface::receive(CanardFrame* canard_frame)
 }
 
 
-bool CyphalTransportIface::send(const CanardTxQueueItem* transfer)
+bool CyphalTransportIface::send(const CanardTxQueueItemCYP* transfer)
 {
     if (_can_iface == nullptr || transfer->frame.payload_size == 0) {
         return false;
