@@ -285,7 +285,7 @@ void AP_CYPHAL::init(uint8_t driver_index, bool enable_filters)
         return;
     }
 
-    _canard = canardInit(&memAllocate, &memFree);
+    _canard = canardInitCYP(&memAllocate, &memFree);
     _canard.node_id = 42;
     _tx_queue = canardTxInit(CYPHAL_TX_QUEUE_FRAME_SIZE, CANARD_MTU_CAN_CLASSIC);
 
