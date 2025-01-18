@@ -20,8 +20,10 @@
 
 #if HAL_ENABLE_CYPHAL_DRIVERS
 
-#include "modules/cyphal/libcanard/libcanard/canard.h"
 
+#include "canard.h"
+
+using namespace cyphal;
 
 class CyphalTransportIface
 {
