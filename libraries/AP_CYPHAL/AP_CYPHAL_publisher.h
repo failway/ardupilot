@@ -20,9 +20,7 @@
 
 #if HAL_ENABLE_CYPHAL_DRIVERS
 
-#include "canard.h"
-
-using namespace cyphal;
+#include "canard_cyp.h"
 
 #include "uavcan/node/Heartbeat_1_0.h"
 #include "uavcan/node/port/List_0_1.h"

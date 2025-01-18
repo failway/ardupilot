@@ -28,8 +28,7 @@
 #include <AP_CYPHAL/AP_CYPHAL_esc.h>
 #include <AP_CANManager/AP_CANDriver.h>
 #include <AP_ESC_Telem/AP_ESC_Telem_Backend.h>
-#include "canard.h"
-using namespace cyphal;
+#include "canard_cyp.h"
 #include "o1heap.h"
 
 #ifndef CYPHAL_TX_QUEUE_FRAME_SIZE
