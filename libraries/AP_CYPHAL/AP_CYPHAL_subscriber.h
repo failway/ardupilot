@@ -52,7 +52,10 @@ class CyphalBaseSubscriber
 public:
     CyphalBaseSubscriber(uint8_t register_idx);
     CyphalBaseSubscriber(CanardInstanceCYP &ins, CanardTxQueue& tx_queue, CanardPortID port_id) :
-        _canard(&ins), _tx_queue(&tx_queue), _port_id(port_id) {};
+        _subscription(),          // Инициализация _subscription по умолчанию
+        _port_id(port_id),        // Затем _port_id
+        _canard(&ins),            // После _canard
+        _tx_queue(&tx_queue) {}   // И в конце _tx_queue
 
     CanardPortID get_port_id();
     virtual void subscribe() = 0;
@@ -68,6 +71,7 @@ protected:
 private:
     bool init(uint8_t register_idx);
 };
+
 
 
 class CyphalRequestSubscriber: public CyphalBaseSubscriber
