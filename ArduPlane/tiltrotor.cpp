@@ -82,6 +82,34 @@ const AP_Param::GroupInfo Tiltrotor::var_info[] = {
     // @User: Standard
     AP_GROUPINFO("WING_FLAP", 10, Tiltrotor, flap_angle_deg, 0),
 
+    // @Param: MY_VAR1
+    // @DisplayName: Custom Variable 1
+    // @Description: This is a user-defined variable for Lua control
+    // @Units: any
+    // @User: Advanced
+    AP_GROUPINFO("LEFT_SET", 11, Tiltrotor, left_set, 0),
+
+    // @Param: MY_VAR2
+    // @DisplayName: Custom Variable 2
+    // @Description: This is a user-defined variable for Lua control
+    // @Units: any
+    // @User: Advanced
+    AP_GROUPINFO("LEFT_ACTUAL", 12, Tiltrotor, left_actual, 0),
+
+    // @Param: MY_VAR3
+    // @DisplayName: Custom Variable 3
+    // @Description: This is a user-defined variable for Lua control
+    // @Units: any
+    // @User: Advanced
+    AP_GROUPINFO("RIGHT_SET", 13, Tiltrotor, right_set, 0),
+
+    // @Param: MY_VAR4
+    // @DisplayName: Custom Variable 4
+    // @Description: This is a user-defined variable for Lua control
+    // @Units: any
+    // @User: Advanced
+    AP_GROUPINFO("RIGHT_ACTUAL", 14, Tiltrotor, right_actual, 0),
+    
     AP_GROUPEND
 };
 
@@ -423,7 +451,12 @@ void Tiltrotor::write_log()
         pkt.front_left_tilt = (SRV_Channels::get_output_scaled(SRV_Channel::k_tiltMotorLeft) * scale) - tilt_yaw_angle;
         pkt.front_right_tilt = (SRV_Channels::get_output_scaled(SRV_Channel::k_tiltMotorRight) * scale) - tilt_yaw_angle;
     }
-
+    
+    pkt.servo_left_set_position = left_set;
+    pkt.actual_left_actual_position = left_actual;
+    pkt.servo_right_set_position = right_set;
+    pkt.actual_right_actual_position = right_actual;
+    
     plane.logger.WriteBlock(&pkt, sizeof(pkt));
 }
 #endif
