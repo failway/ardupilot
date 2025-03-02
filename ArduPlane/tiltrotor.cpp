@@ -82,32 +82,36 @@ const AP_Param::GroupInfo Tiltrotor::var_info[] = {
     // @User: Standard
     AP_GROUPINFO("WING_FLAP", 10, Tiltrotor, flap_angle_deg, 0),
 
-    // @Param: MY_VAR1
-    // @DisplayName: Custom Variable 1
-    // @Description: This is a user-defined variable for Lua control
-    // @Units: any
-    // @User: Advanced
+    // @Param: LEFT_SET
+    // @DisplayName: Servo get angle left set
+    // @Description: Servo get angle left set
+    // @Units: deg
+    // @Range: -15 105
+    // @User: Standard
     AP_GROUPINFO("LEFT_SET", 11, Tiltrotor, left_set, 0),
 
-    // @Param: MY_VAR2
-    // @DisplayName: Custom Variable 2
-    // @Description: This is a user-defined variable for Lua control
-    // @Units: any
-    // @User: Advanced
+    // @Param: LEFT_ACTUAL
+    // @DisplayName: Servo get angle left actual
+    // @Description: Servo get angle left actual
+    // @Units: deg
+    // @Range: -15 105
+    // @User: Standard
     AP_GROUPINFO("LEFT_ACTUAL", 12, Tiltrotor, left_actual, 0),
 
-    // @Param: MY_VAR3
-    // @DisplayName: Custom Variable 3
-    // @Description: This is a user-defined variable for Lua control
-    // @Units: any
-    // @User: Advanced
+    // @Param: RIGHT_SET
+    // @DisplayName: Servo get angle right set
+    // @Description: Servo get angle right set
+    // @Units: deg
+    // @Range: -15 105
+    // @User: Standard
     AP_GROUPINFO("RIGHT_SET", 13, Tiltrotor, right_set, 0),
 
-    // @Param: MY_VAR4
-    // @DisplayName: Custom Variable 4
-    // @Description: This is a user-defined variable for Lua control
-    // @Units: any
-    // @User: Advanced
+    // @Param: RIGHT_ACTUAL
+    // @DisplayName: Servo get angle right actual
+    // @Description: Servo get angle right actual
+    // @Units: deg
+    // @Range: -15 105
+    // @User: Standard
     AP_GROUPINFO("RIGHT_ACTUAL", 14, Tiltrotor, right_actual, 0),
     
     AP_GROUPEND
