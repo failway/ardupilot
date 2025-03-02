@@ -83,10 +83,6 @@ public:
     AP_Float fixed_angle;
     AP_Float fixed_gain;
     AP_Float flap_angle_deg;
-    AP_Float right_actual;
-    AP_Float left_actual;
-    AP_Float right_set;
-    AP_Float left_set;
     
     
     
@@ -115,10 +111,6 @@ private:
         float current_tilt;
         float front_left_tilt;
         float front_right_tilt;
-        float servo_left_set_position;
-        float actual_left_actual_position;
-        float servo_right_set_position;
-        float actual_right_actual_position;
     };
 
     bool setup_complete;

@@ -82,38 +82,6 @@ const AP_Param::GroupInfo Tiltrotor::var_info[] = {
     // @User: Standard
     AP_GROUPINFO("WING_FLAP", 10, Tiltrotor, flap_angle_deg, 0),
 
-    // @Param: LEFT_SET
-    // @DisplayName: Servo get angle left set
-    // @Description: Servo get angle left set
-    // @Units: deg
-    // @Range: -15 105
-    // @User: Standard
-    AP_GROUPINFO("LEFT_SET", 11, Tiltrotor, left_set, 0),
-
-    // @Param: LEFT_ACTUAL
-    // @DisplayName: Servo get angle left actual
-    // @Description: Servo get angle left actual
-    // @Units: deg
-    // @Range: -15 105
-    // @User: Standard
-    AP_GROUPINFO("LEFT_ACTUAL", 12, Tiltrotor, left_actual, 0),
-
-    // @Param: RIGHT_SET
-    // @DisplayName: Servo get angle right set
-    // @Description: Servo get angle right set
-    // @Units: deg
-    // @Range: -15 105
-    // @User: Standard
-    AP_GROUPINFO("RIGHT_SET", 13, Tiltrotor, right_set, 0),
-
-    // @Param: RIGHT_ACTUAL
-    // @DisplayName: Servo get angle right actual
-    // @Description: Servo get angle right actual
-    // @Units: deg
-    // @Range: -15 105
-    // @User: Standard
-    AP_GROUPINFO("RIGHT_ACTUAL", 14, Tiltrotor, right_actual, 0),
-    
     AP_GROUPEND
 };
 
@@ -455,11 +423,6 @@ void Tiltrotor::write_log()
         pkt.front_left_tilt = (SRV_Channels::get_output_scaled(SRV_Channel::k_tiltMotorLeft) * scale) - tilt_yaw_angle;
         pkt.front_right_tilt = (SRV_Channels::get_output_scaled(SRV_Channel::k_tiltMotorRight) * scale) - tilt_yaw_angle;
     }
-    
-    pkt.servo_left_set_position = left_set;
-    pkt.actual_left_actual_position = left_actual;
-    pkt.servo_right_set_position = right_set;
-    pkt.actual_right_actual_position = right_actual;
     
     plane.logger.WriteBlock(&pkt, sizeof(pkt));
 }
