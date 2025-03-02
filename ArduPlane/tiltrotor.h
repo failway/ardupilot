@@ -72,6 +72,8 @@ public:
 
     // Write tiltrotor specific log
     void write_log();
+    
+    void set_tilt_values(float left, float right); 
 
     AP_Int8 enable;
     AP_Int16 tilt_mask;
@@ -83,7 +85,10 @@ public:
     AP_Float fixed_angle;
     AP_Float fixed_gain;
     AP_Float flap_angle_deg;
-    
+    AP_Float left_set = 0.0f;    // Заданное значение левого мотора
+    AP_Float right_set = 0.0f;   // Заданное значение правого мотора
+    AP_Float left_actual = 0.0f; // Фактическое значение левого мотора
+    AP_Float right_actual = 0.0f;// Фактическое значение правого мотора
     
     
     float current_tilt;
@@ -109,6 +114,10 @@ private:
         LOG_PACKET_HEADER;
         uint64_t time_us;
         float current_tilt;
+        float servo_left_set_position;
+        float actual_left_actual_position;
+        float servo_right_set_position;
+        float actual_right_actual_position;
         float front_left_tilt;
         float front_right_tilt;
     };

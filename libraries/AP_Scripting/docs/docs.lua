@@ -130,6 +130,12 @@ function logger:log_file_content(filename) end
 -- i2c bus interaction
 i2c = {}
 
+-- Set tilt values for the left and right motors
+---@param left (float) - Desired angle for left motor (-15 to 105)
+---@param right (float) - Desired angle for right motor (-15 to 105)
+---@return nil
+function tiltr:set_tilt_values(left, right)
+
 -- get a i2c device handler
 ---@param bus integer -- bus number
 ---@param address integer -- device address 0 to 128
