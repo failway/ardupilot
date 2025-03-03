@@ -404,8 +404,10 @@ void Tiltrotor::update(void)
 }
 void Tiltrotor::set_tilt_values(float left, float right) {
     // Проверяем, что значения конечные (не NaN и не бесконечность)
-    left_set = isfinite(left) ? constrain_float(left, -15.0f, 105.0f) : 0.0f;
-    right_set = isfinite(right) ? constrain_float(right, -15.0f, 105.0f) : 0.0f;
+    left_set.set(isfinite(left) ? constrain_float(left, -15.0f, 105.0f) : 0.0f);
+    right_set.set(isfinite(right) ? constrain_float(right, -15.0f, 105.0f) : 0.0f);
+    left_actual.set(0.0f);
+    right_actual.set(0.0f);
 }
 #if HAL_LOGGING_ENABLED
 // Write tiltrotor specific log
