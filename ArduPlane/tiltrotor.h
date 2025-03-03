@@ -85,10 +85,10 @@ public:
     AP_Float fixed_angle;
     AP_Float fixed_gain;
     AP_Float flap_angle_deg;
-    AP_Float left_set = 0.0f;    // Заданное значение левого мотора
-    AP_Float right_set = 0.0f;   // Заданное значение правого мотора
-    AP_Float left_actual = 0.0f; // Фактическое значение левого мотора
-    AP_Float right_actual = 0.0f;// Фактическое значение правого мотора
+    AP_Float left_set;
+    AP_Float right_set;
+    AP_Float left_actual;
+    AP_Float right_actual;
     
     
     float current_tilt;
