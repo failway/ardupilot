@@ -404,10 +404,11 @@ void Tiltrotor::update(void)
 }
 void Tiltrotor::set_tilt_values(float left, float right) {
     // Проверяем, что значения конечные (не NaN и не бесконечность)
-    left_set.set(isfinite(left) ? constrain_float(left, -15.0f, 105.0f) : 0.0f);
-    right_set.set(isfinite(right) ? constrain_float(right, -15.0f, 105.0f) : 0.0f);
-    left_actual.set(0.0f);
-    right_actual.set(0.0f);
+    left_set.set_and_notify(isfinite(left) ? constrain_float(left, -15.0f, 105.0f) : 0.0f);
+    right_set.set_and_notify(isfinite(right) ? constrain_float(right, -15.0f, 105.0f) : 0.0f);
+
+    left_actual.set_and_notify(isfinite(left) ? constrain_float(left, -15.0f, 105.0f) : 0.0f);
+    right_actual.set_and_notify(isfinite(right) ? constrain_float(right, -15.0f, 105.0f) : 0.0f);
 }
 #if HAL_LOGGING_ENABLED
 // Write tiltrotor specific log
@@ -422,10 +423,10 @@ void Tiltrotor::write_log()
         LOG_PACKET_HEADER_INIT(LOG_TILT_MSG),
         time_us      : AP_HAL::micros64(),
         current_tilt : current_tilt * 90.0,
-        servo_left_set_position : left_set,
-        actual_left_actual_position : left_actual,
-        servo_right_set_position : right_set,
-        actual_right_actual_position : right_actual,
+        servo_left_set_position = left_set.get(),
+        actual_left_actual_position = left_actual.get(),
+        servo_right_set_position = right_set.get(),
+        actual_right_actual_position = right_actual.get(),
     };
 
     if (type != TILT_TYPE_VECTORED_YAW) {
