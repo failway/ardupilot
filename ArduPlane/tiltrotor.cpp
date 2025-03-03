@@ -418,10 +418,10 @@ void Tiltrotor::write_log()
     if (!enabled()) {
         return;
     }
-    float left_set_value = left_set.is_initialized() ? left_set.get() : 0.0f;
-    float right_set_value = right_set.is_initialized() ? right_set.get() : 0.0f;
-    float left_actual_value = left_actual.is_initialized() ? left_actual.get() : 0.0f;
-    float right_actual_value = right_actual.is_initialized() ? right_actual.get() : 0.0f;
+    float left_set_value = left_set.initialized() ? left_set.get() : 0.0f;
+    float right_set_value = right_set.initialized() ? right_set.get() : 0.0f;
+    float left_actual_value = left_actual.initialized() ? left_actual.get() : 0.0f;
+    float right_actual_value = right_actual.initialized() ? right_actual.get() : 0.0f;
 
     struct log_tiltrotor pkt {
         LOG_PACKET_HEADER_INIT(LOG_TILT_MSG),
