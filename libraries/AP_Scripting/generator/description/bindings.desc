@@ -561,7 +561,7 @@ singleton QuadPlane method in_assisted_flight boolean
 singleton QuadPlane method abort_landing boolean
 singleton QuadPlane method in_vtol_land_descent boolean
 
-include ../ArduPlane/tiltrotor.h depends APM_BUILD_TYPE(APM_BUILD_ArduPlane) && HAL_TILTROTOR_ENABLED
+include ../ArduPlane/tiltrotor.h depends APM_BUILD_TYPE(APM_BUILD_ArduPlane)
 singleton Tiltrotor rename tiltr
 singleton Tiltrotor method set_tilt_values boolean
 
