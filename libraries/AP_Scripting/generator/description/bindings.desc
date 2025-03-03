@@ -563,7 +563,7 @@ singleton QuadPlane method in_vtol_land_descent boolean
 
 include ../ArduPlane/tiltrotor.h depends APM_BUILD_TYPE(APM_BUILD_ArduPlane)
 singleton Tiltrotor rename tiltr
-singleton Tiltrotor method set_tilt_values boolean
+singleton Tiltrotor method set_tilt_values void float -15.0 105.0 float -15.0 105.0
 
 include ../ArduSub/Sub.h depends APM_BUILD_TYPE(APM_BUILD_ArduSub)
 singleton Sub rename sub
