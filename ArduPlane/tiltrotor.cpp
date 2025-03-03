@@ -93,6 +93,13 @@ const AP_Param::GroupInfo Tiltrotor::var_info[] = {
 Tiltrotor::Tiltrotor(QuadPlane& _quadplane, AP_MotorsMulticopter*& _motors):quadplane(_quadplane),motors(_motors)
 {
     AP_Param::setup_object_defaults(this, var_info);
+    _singleton = this;
+}
+
+Tiltrotor* Tiltrotor::_singleton = nullptr;
+
+Tiltrotor* Tiltrotor::get_singleton() {
+    return _singleton;
 }
 
 void Tiltrotor::setup()

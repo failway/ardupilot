@@ -72,6 +72,7 @@ public:
 
     // Write tiltrotor specific log
     void write_log();
+    static Tiltrotor* get_singleton();
     
     void set_tilt_values(float left, float right); 
 
@@ -108,7 +109,7 @@ public:
     static const struct AP_Param::GroupInfo var_info[];
 
 private:
-
+    static Tiltrotor* _singleton;
     // Tiltrotor specific log message
     struct PACKED log_tiltrotor {
         LOG_PACKET_HEADER;
