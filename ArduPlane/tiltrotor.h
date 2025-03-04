@@ -115,10 +115,6 @@ private:
         LOG_PACKET_HEADER;
         uint64_t time_us;
         float current_tilt;
-        float servo_left_set_position;
-        float actual_left_actual_position;
-        float servo_right_set_position;
-        float actual_right_actual_position;
         float front_left_tilt;
         float front_right_tilt;
     };
