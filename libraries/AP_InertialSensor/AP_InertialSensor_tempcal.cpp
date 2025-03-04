@@ -280,7 +280,7 @@ void AP_InertialSensor_TCal::Learn::add_sample(const Vector3f &sample, float tem
     if (st.sum_count < 100 ||
         temperature - st.last_temp < 0.5) {
         // check for timeout
-        if (temperature == 45.0f) {
+        if (fabs(temperature - 45.0f) < EPSILON) {
             // we have timed out, finish up now
             finish_calibration(st.last_temp);
         }
