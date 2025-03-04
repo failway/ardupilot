@@ -418,15 +418,19 @@ void Tiltrotor::write_log()
     if (!enabled()) {
         return;
     }
-    //float left_set_value = 0.0f;
-    //float right_set_value = 0.0f;
-    //float left_actual_value = 0.0f;
-    //float right_actual_value = 0.0f;
+    float left_set_value = 0.0f;
+    float right_set_value = 0.0f;
+    float left_actual_value = 0.0f;
+    float right_actual_value = 0.0f;
 
     struct log_tiltrotor pkt {
         LOG_PACKET_HEADER_INIT(LOG_TILT_MSG),
         time_us      : AP_HAL::micros64(),
         current_tilt : current_tilt * 90.0,
+        servo_left_set_position : left_set_value,
+        actual_left_actual_position : left_actual_value,
+        servo_right_set_position : right_set_value,
+        actual_right_actual_position : right_actual_value,
     };
 
     if (type != TILT_TYPE_VECTORED_YAW) {
