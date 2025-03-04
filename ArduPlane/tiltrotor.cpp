@@ -93,15 +93,15 @@ const AP_Param::GroupInfo Tiltrotor::var_info[] = {
 Tiltrotor::Tiltrotor(QuadPlane& _quadplane, AP_MotorsMulticopter*& _motors):quadplane(_quadplane),motors(_motors)
 {
     AP_Param::setup_object_defaults(this, var_info);
-    _singleton = this;
+    //_singleton = this;
 }
 
-Tiltrotor* Tiltrotor::_singleton = nullptr;
-
+//Tiltrotor* Tiltrotor::_singleton = nullptr;
+/*
 Tiltrotor* Tiltrotor::get_singleton() {
     return _singleton;
 }
-
+*/
 void Tiltrotor::setup()
 {
 
@@ -402,14 +402,14 @@ void Tiltrotor::update(void)
         vectoring();
     }
 }
-void Tiltrotor::set_tilt_values(float left, float right) {
+/*void Tiltrotor::set_tilt_values(float left, float right) {
     // Проверяем, что значения конечные (не NaN и не бесконечность)
     left_set.set_and_notify(isfinite(left) ? constrain_float(left, -15.0f, 105.0f) : 0.0f);
     right_set.set_and_notify(isfinite(right) ? constrain_float(right, -15.0f, 105.0f) : 0.0f);
 
     left_actual.set_and_notify(isfinite(left) ? constrain_float(left, -15.0f, 105.0f) : 0.0f);
     right_actual.set_and_notify(isfinite(right) ? constrain_float(right, -15.0f, 105.0f) : 0.0f);
-}
+}*/
 #if HAL_LOGGING_ENABLED
 // Write tiltrotor specific log
 void Tiltrotor::write_log()
@@ -418,10 +418,10 @@ void Tiltrotor::write_log()
     if (!enabled()) {
         return;
     }
-    float left_set_value = left_set.initialised() ? left_set.get() : 0.0f;
-    float right_set_value = right_set.initialised() ? right_set.get() : 0.0f;
-    float left_actual_value = left_actual.initialised() ? left_actual.get() : 0.0f;
-    float right_actual_value = right_actual.initialised() ? right_actual.get() : 0.0f;
+    float left_set_value = 0.0f;
+    float right_set_value = 0.0f;
+    float left_actual_value = 0.0f;
+    float right_actual_value = 0.0f;
 
     struct log_tiltrotor pkt {
         LOG_PACKET_HEADER_INIT(LOG_TILT_MSG),

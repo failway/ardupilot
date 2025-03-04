@@ -86,10 +86,10 @@ public:
     AP_Float fixed_angle;
     AP_Float fixed_gain;
     AP_Float flap_angle_deg;
-    AP_Float left_set;
-    AP_Float right_set;
-    AP_Float left_actual;
-    AP_Float right_actual;
+    //AP_Float left_set;
+    //AP_Float right_set;
+    //AP_Float left_actual;
+    //AP_Float right_actual;
     
     
     float current_tilt;
