@@ -274,13 +274,13 @@ void AP_InertialSensor_TCal::Learn::add_sample(const Vector3f &sample, float tem
 
     st.sum += sample;
     st.sum_count++;
-
+    const float EPSILON = 0.01f;
     uint32_t now = AP_HAL::millis();
 
     if (st.sum_count < 100 ||
         temperature - st.last_temp < 0.5) {
         // check for timeout
-        if (temperature == 45) {
+        if (temperature == 45.0f) {
             // we have timed out, finish up now
             finish_calibration(st.last_temp);
         }
