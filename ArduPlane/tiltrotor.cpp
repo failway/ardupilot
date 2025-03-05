@@ -93,15 +93,8 @@ const AP_Param::GroupInfo Tiltrotor::var_info[] = {
 Tiltrotor::Tiltrotor(QuadPlane& _quadplane, AP_MotorsMulticopter*& _motors):quadplane(_quadplane),motors(_motors)
 {
     AP_Param::setup_object_defaults(this, var_info);
-    //_singleton = this;
 }
 
-//Tiltrotor* Tiltrotor::_singleton = nullptr;
-/*
-Tiltrotor* Tiltrotor::get_singleton() {
-    return _singleton;
-}
-*/
 void Tiltrotor::setup()
 {
 
@@ -126,7 +119,7 @@ void Tiltrotor::setup()
 
     // check if there are any permanent VTOL motors
     for (uint8_t i = 0; i < AP_MOTORS_MAX_NUM_MOTORS; ++i) {
-        if (motors->is_motor_enabled(i) && ((tilt_mask & (1U<<1)) == 0)) {
+        if (motors->is_motor_enabled(i) && !is_motor_tilting(i)) {
             // enabled motor not set in tilt mask
             _have_vtol_motor = true;
             break;
@@ -402,14 +395,7 @@ void Tiltrotor::update(void)
         vectoring();
     }
 }
-/*void Tiltrotor::set_tilt_values(float left, float right) {
-    // Проверяем, что значения конечные (не NaN и не бесконечность)
-    left_set.set_and_notify(isfinite(left) ? constrain_float(left, -15.0f, 105.0f) : 0.0f);
-    right_set.set_and_notify(isfinite(right) ? constrain_float(right, -15.0f, 105.0f) : 0.0f);
 
-    left_actual.set_and_notify(isfinite(left) ? constrain_float(left, -15.0f, 105.0f) : 0.0f);
-    right_actual.set_and_notify(isfinite(right) ? constrain_float(right, -15.0f, 105.0f) : 0.0f);
-}*/
 #if HAL_LOGGING_ENABLED
 // Write tiltrotor specific log
 void Tiltrotor::write_log()
@@ -418,19 +404,11 @@ void Tiltrotor::write_log()
     if (!enabled()) {
         return;
     }
-    float left_set_value = 0.0f;
-    float right_set_value = 0.0f;
-    float left_actual_value = 0.0f;
-    float right_actual_value = 0.0f;
 
     struct log_tiltrotor pkt {
         LOG_PACKET_HEADER_INIT(LOG_TILT_MSG),
         time_us      : AP_HAL::micros64(),
         current_tilt : current_tilt * 90.0,
-        servo_left_set_position : left_set_value,
-        actual_left_actual_position : left_actual_value,
-        servo_right_set_position : right_set_value,
-        actual_right_actual_position : right_actual_value,
     };
 
     if (type != TILT_TYPE_VECTORED_YAW) {
@@ -445,7 +423,7 @@ void Tiltrotor::write_log()
         pkt.front_left_tilt = (SRV_Channels::get_output_scaled(SRV_Channel::k_tiltMotorLeft) * scale) - tilt_yaw_angle;
         pkt.front_right_tilt = (SRV_Channels::get_output_scaled(SRV_Channel::k_tiltMotorRight) * scale) - tilt_yaw_angle;
     }
-    
+
     plane.logger.WriteBlock(&pkt, sizeof(pkt));
 }
 #endif

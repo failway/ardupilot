@@ -72,9 +72,6 @@ public:
 
     // Write tiltrotor specific log
     void write_log();
-    static Tiltrotor* get_singleton();
-    
-    void set_tilt_values(float left, float right); 
 
     AP_Int8 enable;
     AP_Int16 tilt_mask;
@@ -86,12 +83,7 @@ public:
     AP_Float fixed_angle;
     AP_Float fixed_gain;
     AP_Float flap_angle_deg;
-    AP_Float left_set;
-    AP_Float right_set;
-    AP_Float left_actual;
-    AP_Float right_actual;
-    
-    
+
     float current_tilt;
     float current_throttle;
     bool _motors_active:1;
@@ -109,16 +101,12 @@ public:
     static const struct AP_Param::GroupInfo var_info[];
 
 private:
-    static Tiltrotor* _singleton;
+
     // Tiltrotor specific log message
     struct PACKED log_tiltrotor {
         LOG_PACKET_HEADER;
         uint64_t time_us;
         float current_tilt;
-        float servo_left_set_position;
-        float actual_left_actual_position;
-        float servo_right_set_position;
-        float actual_right_actual_position;
         float front_left_tilt;
         float front_right_tilt;
     };
